@@ -4,16 +4,15 @@
 namespace common\models;
 
 
+use common\exceptions\EatenException;
+use common\exceptions\HangingFromATreeException;
+use common\exceptions\LiedFiveHoursException;
 use yii\base\Exception;
 
 class AppleManager
 {
     private const SHELF_LIFE = 18000; // five hours
-    private const DEFAULT_EATING_SIZE = 25; // five hours
-
-    private const IS_HANGING_FROM_A_TREE = 'ne vozmozhno ...';
-    private const IS_LIED_FIVE_HOURS = 'PCHacac ...';
-    private const IS_EATEN = 'KERAC ...';
+    private const DEFAULT_EATING_SIZE = 25;
 
     /**
      * @param Apple $apple
@@ -43,18 +42,16 @@ class AppleManager
     }
 
     /**
-     * @param Apple $apple
      * @return bool
      */
     public function create()
     {
-        $randColor = rand(1, 4);
-
-        $apple = New Apple();
-        $apple->color = $randColor;
+        $apple = new Apple();
+        $apple->color = Color::getRandomOne();
         $apple->status = FruitStatus::ON_TREE;
         $apple->size = 100;
         $apple->created_at = time();
+
         return $apple->save();
     }
 
@@ -85,7 +82,7 @@ class AppleManager
     }
 
     /**
-     * @param Apple $apple
+     * @param int $id
      */
     public function fall(int $id)
     {
@@ -98,8 +95,8 @@ class AppleManager
     }
 
     /**
-     * @param Apple $apple
-     * @param float $size
+     * @param int $id
+     * @param int $size
      * @throws Exception
      */
     public function eat(int $id, $size = self::DEFAULT_EATING_SIZE)
@@ -114,7 +111,6 @@ class AppleManager
         } else {
             $apple->size = $apple->size - $size;
         }
-        $apple->validate();
 
         $apple->save();
     }
@@ -126,11 +122,11 @@ class AppleManager
     private function checkEatable(Apple $apple)
     {
         if ($this->isEaten($apple)) {
-            throw new Exception(self::IS_EATEN);
+            throw new EatenException();
         } elseif ($this->isLiedFiveHours($apple)) {
-            throw new Exception(self::IS_LIED_FIVE_HOURS);
+            throw new LiedFiveHoursException();
         } elseif ($this->isHangingFromATree($apple)) {
-            throw new Exception(self::IS_HANGING_FROM_A_TREE);
+            throw new HangingFromATreeException();
         }
     }
 

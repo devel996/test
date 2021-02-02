@@ -3,7 +3,6 @@
 
 namespace frontend\controllers;
 
-use common\models\Apple;
 use common\models\AppleManager;
 use yii\web\Controller;
 
@@ -17,6 +16,7 @@ class AppleController extends Controller
     public function init()
     {
         $this->appleManager = new AppleManager();
+
         parent::init();
     }
 
@@ -52,5 +52,4 @@ class AppleController extends Controller
 
         return $this->redirect(['apple/index']);
     }
-
 }

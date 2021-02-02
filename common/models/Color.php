@@ -39,4 +39,14 @@ class Color extends Model
             self::BLUE => 'Blue'
         ][$this->color];
     }
+
+    /**
+     * @return int
+     */
+    public static function getRandomOne(): int
+    {
+        $list = [self::GREEN, self::RED, self::YELLOW, self::BLUE];
+
+        return $list[array_rand($list)];
+    }
 }
