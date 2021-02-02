@@ -9,6 +9,10 @@ use common\exceptions\HangingFromATreeException;
 use common\exceptions\LiedFiveHoursException;
 use yii\base\Exception;
 
+/**
+ * Class AppleManager
+ * @package common\models
+ */
 class AppleManager
 {
     private const SHELF_LIFE = 18000; // five hours

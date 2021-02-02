@@ -8,12 +8,10 @@ use yii\base\Model;
 
 /**
  * Class Color
+ * Color is a value object
  * @package common\models
  *
- * Color is a value object
- *
  * @property int $name
- *
  */
 class Color extends Model
 {

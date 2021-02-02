@@ -25,7 +25,7 @@ use yii\helpers\Url;
                         <td>
                             <img src="<?= $apple->image ?>" alt="" style="height: 50px">
                         </td>
-                        <td><?= $apple->size ?></td>
+                        <td><?= $apple->size ?>% </td>
                         <td><?= (new \common\models\FruitStatus(['status' => $apple->status]))->name ?></td>
                         <td><a href="<?= Url::to(['apple/fall', 'id' => $apple->id]) ?>"><button class="btn btn-success">Fall</button></a></td>
                         <td class="oneRow">

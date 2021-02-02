@@ -1,3 +1,17 @@
+Installation
+-------------------
+1. ```git clone https://github.com/devel996/test.git```
+1. Run the command ```php init```
+1. Run the command ```composer install```
+1. Create a database and configure ```common/config/main-local.php```
+1. Create a virtual host for the root folder
+1. Run the command ```yii migrate```
+1. Test user login and password for backend are 
+```
+username - user_test
+password - user123456
+```
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
